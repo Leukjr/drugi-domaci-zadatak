@@ -34,6 +34,16 @@ const movies = [
   },
 ];
 
+const init = function () {
+  nameValue.value = "";
+  yearValue.value = "";
+  countryValue.value = "";
+  actorsValue.value = "";
+  notesValue.value = "";
+};
+
+init();
+
 const displayMovies = function () {
   let tableContent = "";
   movies.forEach(
@@ -76,6 +86,7 @@ const validateValues = function () {
 };
 
 const newMovieValues = function () {
+  // Provjera da li su sve bitne informacije upisane
   if (!validateValues()) return;
 
   // Ako je sve u redu, uraditi push i pozvati displayMovies()
@@ -91,7 +102,13 @@ const newMovieValues = function () {
 };
 
 // Dodavanje novog filma
-addNewMovie.addEventListener("click", newMovieValues);
+addNewMovie.addEventListener("click", function () {
+  newMovieValues();
+  init();
+});
 modal.addEventListener("keydown", function (e) {
-  if (e.key === "Enter") newMovieValues();
+  if (e.key === "Enter") {
+    newMovieValues();
+    init();
+  }
 });
