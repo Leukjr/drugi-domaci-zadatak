@@ -50,7 +50,7 @@ const displayMovies = function () {
   let tableContent = "";
   movies.forEach(
     (movie, i) =>
-      (tableContent += `<tr class="movie_row">
+      (tableContent += `<tr class="movie_row red_color">
                           <th scope="row">${i + 1}</th>
                           <td><input type="checkbox" class="checkbox"></td>
                           <td>${movie.name}</td>
