@@ -22,7 +22,7 @@ const movies = [
     country: "USA",
     actors: ["Alessandro Nivola", "Jon Bernthal", "Michael Gandolfini"],
     notes: "Spinoff movie based on the TV Show 'The Sopranos'",
-    watched: false,
+    watched: true,
   },
   {
     name: "The Batman",
@@ -34,6 +34,7 @@ const movies = [
   },
 ];
 
+// Funkcija za resetovanje input.value
 const init = function () {
   nameValue.value = "";
   yearValue.value = "";
@@ -44,13 +45,14 @@ const init = function () {
 
 init();
 
+// Funkcija za prikaz filmova
 const displayMovies = function () {
   let tableContent = "";
   movies.forEach(
     (movie, i) =>
-      (tableContent += `<tr>
+      (tableContent += `<tr class="movie_row">
                           <th scope="row">${i + 1}</th>
-                          <td><input type="checkbox"></td>
+                          <td><input type="checkbox" class="checkbox"></td>
                           <td>${movie.name}</td>
                           <td>${movie.year}</td>
                           <td>${movie.country}</td>
@@ -70,7 +72,7 @@ const validateValues = function () {
   yearValue.classList.remove("is-invalid");
 
   let result = true;
-  // 1. Ako je NAME value prazni string, izbaciti error
+  // 1. Ako NAME value ne postoji, izbaciti error
   if (!nameValue.value) {
     nameValue.classList.add("is-invalid");
     result = false;
@@ -85,6 +87,7 @@ const validateValues = function () {
   return result;
 };
 
+// Funkcija za dodavanje novog filma
 const newMovieValues = function () {
   // Provjera da li su sve bitne informacije upisane
   if (!validateValues()) return;
@@ -96,6 +99,7 @@ const newMovieValues = function () {
     country: countryValue.value,
     actors: actorsValue.value.split(","),
     notes: notesValue.value,
+    watched: false,
   });
 
   displayMovies();
