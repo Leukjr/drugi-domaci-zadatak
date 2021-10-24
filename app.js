@@ -45,6 +45,24 @@ const init = function () {
 
 init();
 
+// Dodavanje Event Listenera i promjena boje
+const changeBackgroundColor = function () {
+  const checkbox = document.querySelectorAll(".checkbox");
+
+  checkbox.forEach((checkbox, i) =>
+    checkbox.addEventListener("change", function (e) {
+      const movieRow = document.getElementById(`movie-row-${i}`);
+      if (e.target.checked) {
+        movieRow.classList.remove("red_color");
+        movieRow.classList.add("blue_color");
+      } else {
+        movieRow.classList.add("red_color");
+        movieRow.classList.remove("blue_color");
+      }
+    })
+  );
+};
+
 // Funkcija za prikaz filmova
 const displayMovies = function () {
   let tableContent = "";
@@ -52,7 +70,7 @@ const displayMovies = function () {
     (movie, i) =>
       (tableContent += `<tr class="movie_row red_color" id="movie-row-${i}">
                           <th scope="row">${i + 1}</th>
-                          <td><input type="checkbox" class="checkbox" name="checkbox-${i}" value="${i}"></td>
+                          <td><input type="checkbox" class="checkbox" id="checkbox-${i}" value="${i}"></td>
                           <td>${movie.name}</td>
                           <td>${movie.year}</td>
                           <td>${movie.country}</td>
@@ -63,6 +81,8 @@ const displayMovies = function () {
   );
 
   document.getElementById("movies_table_body").innerHTML = tableContent;
+
+  changeBackgroundColor();
 };
 displayMovies();
 
@@ -116,12 +136,3 @@ modal.addEventListener("keydown", function (e) {
     init();
   }
 });
-
-const checkbox = document.getElementsByClassName("checkbox");
-console.log(checkbox);
-
-for (let check of checkbox) {
-  check.addEventListener("change", function (e) {
-    console.log(check);
-  });
-}
