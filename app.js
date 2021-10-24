@@ -50,9 +50,9 @@ const displayMovies = function () {
   let tableContent = "";
   movies.forEach(
     (movie, i) =>
-      (tableContent += `<tr class="movie_row red_color">
+      (tableContent += `<tr class="movie_row red_color" id="movie-row-${i}">
                           <th scope="row">${i + 1}</th>
-                          <td><input type="checkbox" class="checkbox"></td>
+                          <td><input type="checkbox" class="checkbox" name="checkbox-${i}" value="${i}"></td>
                           <td>${movie.name}</td>
                           <td>${movie.year}</td>
                           <td>${movie.country}</td>
@@ -116,3 +116,12 @@ modal.addEventListener("keydown", function (e) {
     init();
   }
 });
+
+const checkbox = document.getElementsByClassName("checkbox");
+console.log(checkbox);
+
+for (let check of checkbox) {
+  check.addEventListener("change", function (e) {
+    console.log(check);
+  });
+}
