@@ -14,7 +14,6 @@ const movies = [
     country: "USA",
     actors: ["Timothée Chalamet", "Zendaya", "Jason Momoa"],
     notes: "Remake of a movie from 1984",
-    watched: false,
   },
   {
     name: "The Many Saints of Newark",
@@ -22,7 +21,6 @@ const movies = [
     country: "USA",
     actors: ["Alessandro Nivola", "Jon Bernthal", "Michael Gandolfini"],
     notes: "Spinoff movie based on the TV Show 'The Sopranos'",
-    watched: true,
   },
   {
     name: "The Batman",
@@ -30,7 +28,6 @@ const movies = [
     country: "USA",
     actors: ["Robert Pattinson", "Andy Serkis", "Zoë Kravitz"],
     notes: "Movie based on a DC Comic character",
-    watched: false,
   },
 ];
 
@@ -42,8 +39,6 @@ const init = function () {
   actorsValue.value = "";
   notesValue.value = "";
 };
-
-init();
 
 // Dodavanje Event Listenera i promjena boje
 const changeBackgroundColor = function () {
@@ -119,20 +114,18 @@ const newMovieValues = function () {
     country: countryValue.value,
     actors: actorsValue.value.split(","),
     notes: notesValue.value,
-    watched: false,
   });
 
   displayMovies();
+  init();
 };
 
 // Dodavanje novog filma
 addNewMovie.addEventListener("click", function () {
   newMovieValues();
-  init();
 });
 modal.addEventListener("keydown", function (e) {
   if (e.key === "Enter") {
     newMovieValues();
-    init();
   }
 });
